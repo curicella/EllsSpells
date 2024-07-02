@@ -91,7 +91,7 @@ class AuthenticatedSessionController extends Controller
                 ->get();
         }
 
-        dd($followedThemesFromWhichUserIsNotBlocked);
+        
 
         $followedThemes = DB::table('themes')
         ->join('theme_user', 'themes.id', '=', 'theme_user.theme_id')
