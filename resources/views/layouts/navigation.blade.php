@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('theme.index')" :active="request()->routeIs('theme')" >
                         {{ __('Themes') }}
                     </x-nav-link>
-                    @if(auth()->user()->role == "MODERATOR")
+                    @if(auth()->user() != null && auth()->user()->role == "MODERATOR")
                         <x-nav-link :href="route('user.themes')" :active="request()->routeIs('user.themes')" >
                             {{ __('My Themes') }}
                         </x-nav-link>
