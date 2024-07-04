@@ -19,6 +19,7 @@ class ThemeFactory extends Factory
         return [
             'name' => fake()->sentence,
             'description' => fake()->sentence,
+            'picture' => fake()->imageUrl,
             'approve_status' => fake()->randomElement(['APPROVED', 'PENDING', 'REJECTED']),
         ];
     }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
 
             $table->text('description')->nullable();
+
+            $table->text('picture')->nullable();
             
             $table->enum('approve_status', ['REJECTED', 'APPROVED', 'PENDING'])->default('PENDING');
 

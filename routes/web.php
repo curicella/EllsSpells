@@ -6,8 +6,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +29,26 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+ 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+ 
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/profile', function () {
+    // Only verified users may access this route...
+})->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -70,5 +92,8 @@ Route::post('comments/{comment}/vote', [CommentController::class, 'vote'])->name
 Route::post('themes/{theme}/user/{user}/block', [ThemeController::class, 'blockUser'])->name('themes.user.blockUser');
 Route::delete('themes/{theme}/user/{user}/unblock', [ThemeController::class, 'unblockUser'])->name('themes.user.unblockUser');
 
+
+Route::resource('posts', PostController::class)
+    ->only(['show']);
 
 require __DIR__.'/auth.php';

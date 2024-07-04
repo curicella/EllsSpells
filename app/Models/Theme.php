@@ -11,7 +11,7 @@ class Theme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'approve_status', 'user_id'];
+    protected $fillable = ['name', 'description', 'picture', 'approve_status', 'user_id'];
 
     public function discussions(): HasMany
     {

@@ -11,7 +11,7 @@
 
             <div class="mb-4">
                 <x-label for="description" :required="true">Description</x-label>
-                <x-text-input name="description" class="w-full" type="textarea" :value="old('description', $theme->description)" />
+                <x-textarea name="description" class="w-full" type="textarea" :value="old('description', $theme->description)" />
             </div>
 
             <x-button class="w-full">Update</x-button>

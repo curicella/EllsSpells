@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Discussion;
 use App\Models\Theme;
+use App\Notifications\NewDiscussionNotification;
 
 class DiscussionController extends Controller
 {
@@ -39,9 +40,9 @@ class DiscussionController extends Controller
 
         $discussionsThemeFollowers = $theme->followers()->get();
 
-        // foreach ($discussionsThemeFollowers as $follower) {
-        //     $follower->notify(new NewConversationNotification($topic, $newConversation));
-        // }
+        foreach ($discussionsThemeFollowers as $follower) {
+            $follower->notify(new NewDiscussionNotification($theme, $newDiscussion));
+        }
 
         return redirect()->route('theme.show', $theme)
             ->with('success', 'Discussion created successfully!');
@@ -81,7 +82,7 @@ class DiscussionController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('discussions.show', $discussion)
+        return redirect()->route('discussion.show', $discussion)
             ->with('success', 'Discussion updated successfully!');
     }
 

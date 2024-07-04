@@ -1,3 +1,3 @@
-<button {{ $attributes->class(['border border-green-700 px-4 py-2 rounded-md hover:bg-green-700 hover:text-white']) }}>
+<button {{ $attributes->class(['rounded-md border bg-white bg-opacity-90 px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-my-brown hover:text-white']) }}>
     {{ $slot }}
 </button>

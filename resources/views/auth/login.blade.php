@@ -23,6 +23,22 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+      
+        @if (session('error'))
+            <div style="color: #ff9100;">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div style="color: #ff9100;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <!-- Remember Me -->
         <div class="block mt-4">

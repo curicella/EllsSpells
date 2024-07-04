@@ -91,13 +91,21 @@ class ThemeController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'picture' => 'required'
         ]);
+
+        $response = cloudinary()->upload($request->file('picture')->getRealPath(), [
+            'verify' => false
+        ])->getSecurePath();
 
         Theme::create([
             'name' => $request->name,
             'description' => $request->description,
+            'picture' => $response,
             'user_id' => $request->user()->id,
         ]);
+
+
 
         return redirect()->route('theme.index')
             ->with('success', 'Theme created successfully! Wait for approval.');

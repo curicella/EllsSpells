@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Discussion;
+use App\Notifications\CommentNotification;
+use App\Notifications\CommentVotedNotification;
 
 
 
@@ -44,9 +46,9 @@ class CommentController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        // foreach ($discussion->theme->followers as $follower) {
-        //     $follower->notify(new CommentNotification($conversation->comments->last()));
-        // }
+        foreach ($discussion->theme->followers as $follower) {
+            $follower->notify(new CommentNotification($discussion->comments->last()));
+        }
 
         return redirect()->route('discussion.show', $discussion)
             ->with('success', 'Comment submitted successfully!');
@@ -101,7 +103,7 @@ class CommentController extends Controller
         ]);
 
         $userThatVoted = User::find($request->user()->id);
-        //$comment->user->notify(new CommentVotedNotification($comment, $userThatVoted));
+        $comment->user->notify(new CommentVotedNotification($comment, $userThatVoted));
 
         return back()->with('success', 'Vote submitted successfully!');
     }

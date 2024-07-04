@@ -36,11 +36,16 @@ class RegisteredUserController extends Controller
             'username' => 'required|unique:users,username',
             'dob' => 'required',
             'country' => 'required',
+            'avatar' => 'required|image|mimes:jpg,png',
             'JMBG' => 'required|unique:users,JMBG',
             'gender' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
         ]);
+
+        $response = cloudinary()->upload($request->file('avatar')->getRealPath(), [
+            'verify' => false
+        ])->getSecurePath();
 
         $user = User::create($request->only(
             'name',
@@ -52,7 +57,59 @@ class RegisteredUserController extends Controller
             'email',
             'gender'
         ) + [
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'avatar' => $response
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function register_form()
+    {
+        return view('auth.register');
+    }
+
+    public function register_moderator_form()
+    {
+        return view('auth.register-moderator');
+    }
+
+    public function register_moderator(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required|unique:users,phone',
+            'username' => 'required|unique:users,username',
+            'dob' => 'required',
+            'country' => 'required',
+            'JMBG' => 'required|unique:users,JMBG',
+            'avatar' => 'required|image|mimes:jpg,png',
+            'gender' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed',
+        ]);
+
+        $response = cloudinary()->upload($request->file('avatar')->getRealPath(), [
+            'verify' => false
+        ])->getSecurePath();
+
+        $user = User::create($request->only(
+            'name',
+            'phone',
+            'username',
+            'dob',
+            'country',
+            'JMBG',
+            'email',
+            'gender'
+        ) + [
+            'password' => bcrypt($request->password),
+            'role' => 'MODERATOR', 
+            'avatar' => $response,
         ]);
 
         event(new Registered($user));

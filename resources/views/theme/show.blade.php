@@ -1,13 +1,12 @@
 <x-app-layout>
-
-    <x-theme-card :$theme>
+ <x-theme-card :$theme>
         <div class="flex items-center space-x-4">
             @auth
             @if ($theme->user->id !== auth()->id())
             @unless ($theme->isFollowedBy(auth()->user()))
             <form action="{{ route('theme.follow', $theme) }}" method="POST">
                 @csrf
-                <x-button class="rounded-md border border-green-700 bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-green-700 hover:text-white">
+                <x-button class="rounded-md bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-my-beige-3 hover:text-black">
                     Follow this theme
                 </x-button>
             </form>
@@ -37,7 +36,7 @@
 
 
     @can('create', App\Models\Discussion::class)
-    <x-card class="mb-4">
+    <x-card class="mb-4 mx-auto mt-10 w-[750px]">
         <h1 class="mb-4 font-medium text-lg">
             Create a discussion about this theme
         </h1>
@@ -50,65 +49,57 @@
 
             <div class="mb-8">
                 <x-label for="description" :required="true">Description</x-label>
-                <x-text-input name="description" class="w-full" type="textarea" />
+                <x-textarea name="description" class="w-full" type="textarea"  />
             </div>
 
             <x-button class="w-full font-medium">Submit</x-button>
         </form>
     </x-card>
+
     @else
-    <x-card class="mb-4">
-        <p class="font-bold text-slate-400">
-            Log in so you can create a discussion about this theme.
-        </p>
-    </x-card>
+    <div class="flex justify-center items-center">
+        <a href="{{route('login')}}" class="font-bold text-my-beige text-3xl text-center">
+            Log in for discussion creation!
+        </a>
+    </div>
     @endcan
 
-    <div x-data="{ openTab: 1 }">
-        <div class="flex space-x-4 text-sm font-medium text-center text-gray-500 mb-4 mt-8">
-            <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-white bg-green-700 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Conversations</button>
+    @auth
+        <div x-data="{ openTab: 1 }">
+            <div class="flex space-x-4 text-sm font-medium text-center text-gray-500 ml-8 mt-8">
+                <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-white bg-my-brown-2 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Discussions</button>
 
-            {{-- <button @click="openTab = 2" :class="openTab === 2 ? 'px-4 py-3 rounded-lg text-white bg-green-700 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Polls</button> --}}
+                <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-white bg-my-brown-2 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Posts</button>
+            </div>
 
-            <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-white bg-green-700 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Articles</button>
+            <x-card class="mb-4" x-show="openTab === 1">
+                <h2 class="mb-10 mt-2 text-xl font-medium">
+                    Discussions about {{ $theme->name }}
+                </h2>
+
+                @foreach ($theme->discussions->sortByDesc('updated_at') as $discussion)
+                <x-discussion-card class="mb-4" :$discussion>
+                    <x-link-button :href="route('discussion.show', $discussion)">
+                        Show discussion
+                    </x-link-button>
+                </x-discussion-card>
+                @endforeach
+            </x-card>
+
+
+            <x-card class="mb-4" x-show="openTab === 3">
+                <h2 class="mb-10 mt-2 text-xl font-medium">
+                    Posts about {{ $theme->name }}
+                </h2>
+
+                @foreach ($theme->posts as $post)
+                <x-post-card :$post>
+                    <x-link-button :href="route('posts.show', $post)">
+                        Show post
+                    </x-link-button>
+                </x-post-card>
+                @endforeach
+            </x-card>
         </div>
-
-        <x-card class="mb-4" x-show="openTab === 1">
-            <h2 class="mb-10 mt-2 text-xl font-medium">
-                Discussions about {{ $theme->name }}
-            </h2>
-
-            @foreach ($theme->discussions->sortByDesc('updated_at') as $discussion)
-            <x-discussion-card class="mb-4" :$discussion>
-                <x-link-button :href="route('discussion.show', $discussion)">
-                    Show discussion
-                </x-link-button>
-            </x-discussion-card>
-            @endforeach
-        </x-card>
-
-        {{-- <x-card class="mb-4" x-show="openTab === 2">
-            <h2 class="mb-10 mt-2 text-xl font-medium">
-                Polls about {{ $theme->name }}
-            </h2>
-
-            @foreach ($theme->polls as $poll)
-            <x-poll-card :$poll />
-            @endforeach
-        </x-card> --}}
-
-        <x-card class="mb-4" x-show="openTab === 3">
-            <h2 class="mb-10 mt-2 text-xl font-medium">
-                Posts about {{ $theme->name }}
-            </h2>
-
-            @foreach ($theme->posts as $post)
-            <x-post-card :$post>
-                <x-link-button :href="route('posts.show', $post)">
-                    Show post
-                </x-link-button>
-            </x-post-card>
-            @endforeach
-        </x-card>
-    </div>
+    @endauth
 </x-app-layout>

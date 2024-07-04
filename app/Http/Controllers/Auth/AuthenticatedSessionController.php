@@ -28,12 +28,46 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-        $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
 
-        //return redirect()->intended(RouteServiceProvider::HOME);
-        return redirect('theme');
+        if (Auth::attempt($credentials, $remember)) {
+            if (auth()->user() !== null && auth()->user()->approve_status === 'PENDING') {
+                Auth::logout();
+
+                return redirect()->back()
+                    ->with('error', 'Your account is pending approval. Check back later.');
+            }
+
+            if (auth()->user() !== null && auth()->user()->approve_status === 'REJECTED') {
+                Auth::logout();
+
+                return redirect()->back()
+                    ->with('error', 'Your account is rejected from entering our website');
+            }
+
+            if (auth()->user() !== null && auth()->user()->role != null && auth()->user()->role === 'ADMIN') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect('/');
+            }
+            } else {
+                return redirect()->back()
+                    ->with('error', 'Invalid credentials');
+            }
+
+
+        // $request->authenticate();
+
+        // $request->session()->regenerate();
+
+        // //return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect('theme');
     }
 
     /**

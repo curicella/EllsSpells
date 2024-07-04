@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('register_moderator') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -24,12 +24,16 @@
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
-        <!-- Avatar -->
+        <!-- Avatar  -->
         <div class="mt-4">
             <x-input-label for="avatar" :value="__('Avatar')" />
             <x-text-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
+        {{-- <div class="mb-8">
+            <x-label for="avatar">Profile picture</x-label>
+            <input type="file" name="avatar" accept=".jpg,.png">
+        </div> --}}
 
         <!-- Gender -->
         <div class="mt-4">
@@ -85,7 +89,6 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            
             <a class="underline text-sm text-my-beige hover:text-my-beige-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
@@ -93,12 +96,8 @@
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
-
-            
         </div>
-        <a class="underline text-sm text-my-beige hover:text-my-beige-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register_moderator') }}">
-            {{ __('Become moderator?') }}
-        </a>
+
         
     </form>
 </x-guest-layout>

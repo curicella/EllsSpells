@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Theme;
 
 class Post extends Model
 {
@@ -11,8 +12,8 @@ class Post extends Model
 
     protected $fillable = ['title', 'content'];
 
-    public function topic()
+    public function theme()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Theme::class);
     }
 }

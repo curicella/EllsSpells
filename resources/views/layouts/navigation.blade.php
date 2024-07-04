@@ -22,12 +22,14 @@
                             {{ __('My Themes') }}
                         </x-nav-link>
                     @endif
+                    @if(auth()->user() != null && auth()->user()->role != "ADMIN")
                     <x-nav-link :href="route('user.discussions')" :active="request()->routeIs('user.discussions')" >
                         {{ __('I Discuss...') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user.themes.followed')" :active="request()->routeIs('user.themes.followed')">
                         {{ __('I Follow...') }}
                     </x-nav-link>
+                    @endif
                     @endif
                     @auth
                     @if(auth()->user()->role == 'ADMIN')

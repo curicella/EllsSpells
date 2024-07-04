@@ -25,6 +25,7 @@ export default {
                 'my-beige': '#BAB6B3',
                 'my-beige-2': '#b8916b',
                 'my-beige-3': '#a29c98',
+                'card-brown': '#29211c'
             },
             backgroundImage: {
                 'hero': "url('/images/Winged Victory Of Samothrace2.png')",
