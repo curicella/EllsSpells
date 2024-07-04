@@ -37,6 +37,10 @@ class AuthenticatedSessionController extends Controller
         $remember = $request->filled('remember');
 
         if (Auth::attempt($credentials, $remember)) {
+            if (auth()->user()->role === "ADMIN"){
+                return redirect()->route('dashboard');
+            }
+
             if (auth()->user() !== null && auth()->user()->approve_status === 'PENDING') {
                 Auth::logout();
 
