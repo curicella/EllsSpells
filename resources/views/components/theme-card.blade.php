@@ -1,7 +1,7 @@
 <x-card class="mt-4 bg-opacity-70 w-full mx-auto">
     <div class="w-full flex space-x-6" >
         
-        <img src="{{$theme->picture}}" alt="Theme picture" class="w-[400px]">
+        <img src="{{$theme->picture}}" alt="Theme picture" class="w-[480px]">
         
         
         <div class="w-[450] space-y-20 justify-between">

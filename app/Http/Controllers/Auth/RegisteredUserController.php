@@ -32,14 +32,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|unique:users,phone',
-            'username' => 'required|unique:users,username',
+            'phone' => 'required',
+            'username' => 'required',
             'dob' => 'required',
             'country' => 'required',
             'avatar' => 'required|image|mimes:jpg,png',
-            'JMBG' => 'required|unique:users,JMBG',
+            'JMBG' => 'required',
             'gender' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required',
             'password' => 'required|confirmed',
         ]);
 
@@ -82,14 +82,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|unique:users,phone',
-            'username' => 'required|unique:users,username',
+            'phone' => 'required',
+            'username' => 'required',
             'dob' => 'required',
             'country' => 'required',
-            'JMBG' => 'required|unique:users,JMBG',
             'avatar' => 'required|image|mimes:jpg,png',
+            'JMBG' => 'required',
             'gender' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required',
             'password' => 'required|confirmed',
         ]);
 
