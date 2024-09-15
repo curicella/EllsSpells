@@ -1,36 +1,48 @@
 <x-app-layout>
-    <p class="my-8 text-xl font-semibold">Theme requests pending</p>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Theme requests pending') }}
+        </h2>
+    </x-slot>
 
-    <table class="min-w-full">
-        <thead>
-            <tr>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">User</th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Approve</th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Reject</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($themes->sortByDesc('created_at') as $theme)
-            <tr>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $theme->name }}</td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $theme->user->name }}</td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <form method="POST" action="{{ route('admin.approve-theme') }}">
-                        @csrf
-                        <input type="hidden" name="theme_id" value="{{ $theme->id }}">
-                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">Approve</button>
-                    </form>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <form method="POST" action="{{ route('admin.reject-theme') }}">
-                        @csrf
-                        <input type="hidden" name="theme_id" value="{{ $theme->id }}">
-                        <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="m-4 py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Approve</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Reject</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($themes->sortByDesc('created_at') as $theme)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $theme->name }}</td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $theme->user->name }}</td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <form method="POST" action="{{ route('admin.approve-theme') }}">
+                                        @csrf
+                                        <input type="hidden" name="theme_id" value="{{ $theme->id }}">
+                                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">Approve</button>
+                                    </form>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <form method="POST" action="{{ route('admin.reject-theme') }}">
+                                        @csrf
+                                        <input type="hidden" name="theme_id" value="{{ $theme->id }}">
+                                        <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>

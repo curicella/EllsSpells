@@ -1,4 +1,4 @@
-<x-card class="mb-4 bg-my-lilac ">
+<x-card class="mb-4 bg-my-white ">
     <div class="flex items-center space-x-4 mb-4">
         <img src="{{ $post->theme->user->avatar }}" alt="{{ $post->theme->user->name }}" class="w-12 h-12 rounded-full">
         <div>

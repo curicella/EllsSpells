@@ -1,15 +1,15 @@
-<x-card class="mt-8 bg-my-lilac space-y-5">
+<x-card class="mt-8 bg-my-white space-y-5">
     <div class="flex items-center space-x-4  mb-4">
         <img src="{{ $discussion->user->avatar }}" alt="{{ $discussion->user->name }}" class="w-12 h-12 rounded-full">
         <div>
             <h3 class="font-semibold">{{ $discussion->user->name }}</h3>
-            <p class="text-gray-600 text-sm">{{ $discussion->created_at->diffForHumans() }}</p>
+            <p class="text-my-black-2 text-sm">{{ $discussion->created_at->diffForHumans() }}</p>
         </div>
     </div>
 
-    <h2 class="mb-4 text-xl text-my-black-2 font-semibold">{{ $discussion->title }}</h2>
+    <h2 class="mb-4 text-xl text-my-black font-semibold">{{ $discussion->title }}</h2>
 
-    <p class="mb-4 text-gray-600">{{ $discussion->description }}</p>
+    <p class="mb-4 text-my-black">{{ $discussion->description }}</p>
 
     <div class="mt-3">
         {{ $slot }}
