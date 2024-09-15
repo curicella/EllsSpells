@@ -1,33 +1,33 @@
-<nav x-data="{ open: false }" class="bg-my-brown text-yellow-50">
+<nav x-data="{ open: false }" class="bg-my-white text-my-black">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <img src="/images/LOGO_.png" alt="logo image" class="h-[50px]">
-                        <p class="font-amatic text-3xl">ART TALK</p>
+                        <img src="/images/logo_es_png.png" alt="logo image" class="h-[50px]">
+                        <p class="font-palatino text-3xl">Ells Spells</p>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-my-black">
                     @if((auth()->user() != null && auth()->user()->role != "ADMIN") || auth()->user() == null)
                     <x-nav-link :href="route('theme.index')" :active="request()->routeIs('theme')" >
-                        {{ __('Themes') }}
+                        {{ __('Topics') }}
                     </x-nav-link>
                     @if(auth()->user() != null && auth()->user()->role == "MODERATOR")
                         <x-nav-link :href="route('user.themes')" :active="request()->routeIs('user.themes')" >
-                            {{ __('My Themes') }}
+                            {{ __('My Topics') }}
                         </x-nav-link>
                     @endif
                     @if(auth()->user() != null && auth()->user()->role != "ADMIN")
                     <x-nav-link :href="route('user.discussions')" :active="request()->routeIs('user.discussions')" >
-                        {{ __('I Discuss...') }}
+                        {{ __('Conversations...') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user.themes.followed')" :active="request()->routeIs('user.themes.followed')">
-                        {{ __('I Follow...') }}
+                        {{ __('Followings') }}
                     </x-nav-link>
                     @endif
                     @endif
@@ -37,7 +37,7 @@
                         {{ __('User Requests') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.theme-requests')" :active="request()->routeIs('admin.theme-requests')">
-                        {{ __('Theme Requests') }}
+                        {{ __('Topic Requests') }}
                     </x-nav-link>
                     @endif
                     @endauth
@@ -49,7 +49,7 @@
                 <div class="hidden sm:flex sm:items-center sm:ms-6 ">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-my-black hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ms-1">
@@ -80,17 +80,17 @@
                 </div>
             @else
                 <div class="flex items-center self-center">
-                    <a href="{{ route('login') }}" class="text-gray-200 hover:text-gray-400">Log in</a>
+                    <a href="{{ route('login') }}" class="text-my-black hover:text-my-black-2">Log in</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-gray-200 hover:text-gray-400 ">Register</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-my-black hover:text-my-black-2 ">Register</a>
                     @endif
                 </div>
             @endauth
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-my-black hover:text-my-black-2 hover:bg-my-purple-2 focus:outline-none focus:bg-gray-100 focus:text-my-black-2 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -139,10 +139,10 @@
         </div>
         @else
             <div class="pt-4 pb-1 border-t border-gray-200">
-                <x-responsive-nav-link href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</x-responsive-nav-link>
 
                 @if (Route::has('register'))
-                    <x-responsive-nav-link href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</x-responsive-nav-link>
                 @endif
             </div>
         @endauth

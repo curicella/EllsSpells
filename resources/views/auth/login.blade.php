@@ -1,6 +1,6 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4 bg-my-brown-2" :status="session('status')" />
+    <x-auth-session-status class="mb-4 bg-my-lilac" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -43,14 +43,14 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-my-beige text-my-beige shadow-sm focus:ring-my-beige" name="remember">
+                <input id="remember_me" type="checkbox" class="rounded border-my-black text-my-black shadow-sm focus:ring-my-black-2" name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-my-beige hover:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-my-black-2 hover:text-my-black rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif

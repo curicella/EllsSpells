@@ -4,7 +4,7 @@
 
         @can('create', App\Models\Theme::class)
         <x-link-button class="text-base" :href="route('theme.create')">
-            Create a new theme
+            Create a new topic
         </x-link-button>
         @endcan
     </div>
@@ -12,7 +12,7 @@
     @foreach ($themes->sortByDesc('updated_at') as $theme)
     <x-theme-card class="mb-4" :$theme>
         <x-link-button :href="route('theme.show', $theme)">
-            Show conversations from this theme
+            Show conversations from this topic
         </x-link-button>
     </x-theme-card>
     @endforeach

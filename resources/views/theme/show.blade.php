@@ -6,16 +6,16 @@
             @unless ($theme->isFollowedBy(auth()->user()))
             <form action="{{ route('theme.follow', $theme) }}" method="POST">
                 @csrf
-                <x-button class="rounded-md bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-my-beige-3 hover:text-black">
-                    Follow this theme
+                <x-button class="rounded-md bg-my-lilac px-2.5 py-1.5 text-center text-sm font-semibold text-my-black shadow-sm hover:bg-my-purple hover:text-black">
+                    Follow this topic
                 </x-button>
             </form>
             @else
             <form action="{{ route('theme.unfollow', $theme) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <x-button class="rounded-md border border-red-700 bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-red-700 hover:text-white">
-                    Unfollow this theme
+                <x-button class="rounded-md border border-red-700 bg-my-lilac px-2.5 py-1.5 text-center text-sm font-semibold text-my-black shadow-sm hover:bg-red-700 hover:text-black">
+                    Unfollow this topic
                 </x-button>
             </form>
             @endunless
@@ -23,11 +23,11 @@
 
             @can('update', $theme)
             <x-link-button :href="route('theme.edit', $theme)">
-                Edit theme
+                Edit topic
             </x-link-button>
             @endcan
             @else
-            <p class="font-bold text-slate-400">
+            <p class="font-bold text-my-purple-2">
                 Log in for more!
             </p>
             @endauth
@@ -38,7 +38,7 @@
     @can('create', App\Models\Discussion::class)
     <x-card class="mb-4 mx-auto mt-10 w-[750px]">
         <h1 class="mb-4 font-medium text-lg">
-            Create a discussion about this theme
+            Start a conversation about this topic
         </h1>
         <form action="{{ route('theme.discussions.store', $theme) }}" method="POST">
             @csrf
@@ -58,29 +58,29 @@
 
     @else
     <div class="flex justify-center items-center">
-        <a href="{{route('login')}}" class="font-bold text-my-beige text-3xl text-center">
-            Log in for discussion creation!
+        <a href="{{route('login')}}" class="font-bold text-my-black text-3xl text-center">
+            Log in to start a coversation about this topic!
         </a>
     </div>
     @endcan
 
     @auth
         <div x-data="{ openTab: 1 }">
-            <div class="flex space-x-4 text-sm font-medium text-center text-gray-500 ml-8 mt-8">
-                <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-white bg-my-brown-2 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Discussions</button>
+            <div class="flex space-x-4 text-sm font-medium text-center text-my-black-2 ml-8 mt-8">
+                <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Conversations</button>
 
-                <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-white bg-my-brown-2 active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Posts</button>
+                <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Posts</button>
             </div>
 
             <x-card class="mb-4" x-show="openTab === 1">
                 <h2 class="mb-10 mt-2 text-xl font-medium">
-                    Discussions about {{ $theme->name }}
+                    Conversations about {{ $theme->name }}
                 </h2>
 
                 @foreach ($theme->discussions->sortByDesc('updated_at') as $discussion)
                 <x-discussion-card class="mb-4" :$discussion>
                     <x-link-button :href="route('discussion.show', $discussion)">
-                        Show discussion
+                        Show conversation
                     </x-link-button>
                 </x-discussion-card>
                 @endforeach

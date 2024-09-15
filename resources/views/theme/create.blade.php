@@ -1,7 +1,7 @@
 <x-app-layout class="flex items-center justify-center">
     <x-card class="py-8 px-8 w-[500px]">
-        <h1 class="mt-6 mb-12 text-center text-4xl font-medium text-my-beige">
-            Create a new theme to discuss
+        <h1 class="mt-6 mb-12 text-center text-4xl font-medium text-mu-black">
+            Create a new topic to converse about
         </h1>
         <form action="{{ route('theme.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

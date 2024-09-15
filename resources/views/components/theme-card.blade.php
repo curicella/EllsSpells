@@ -23,7 +23,7 @@
                 </div>
     
                 <div>
-                    <h2 class="mb-4 text-xl text-white font-semibold">{{ $theme->name }}</h2>
+                    <h2 class="mb-4 text-xl text-my-black font-semibold">{{ $theme->name }}</h2>
                     <p class="mb-4 text-gray-600">{{ $theme->description }}</p>
                 </div>
             </div>

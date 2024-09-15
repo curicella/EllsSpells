@@ -1,4 +1,4 @@
-<x-card class="mt-8 bg-card-brown space-y-5">
+<x-card class="mt-8 bg-my-lilac space-y-5">
     <div class="flex items-center space-x-4  mb-4">
         <img src="{{ $discussion->user->avatar }}" alt="{{ $discussion->user->name }}" class="w-12 h-12 rounded-full">
         <div>
@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <h2 class="mb-4 text-xl text-my-beige-2 font-semibold">{{ $discussion->title }}</h2>
+    <h2 class="mb-4 text-xl text-my-black-2 font-semibold">{{ $discussion->title }}</h2>
 
     <p class="mb-4 text-gray-600">{{ $discussion->description }}</p>
 

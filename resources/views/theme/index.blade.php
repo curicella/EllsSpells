@@ -3,7 +3,7 @@
 
         @can('create', App\Models\Theme::class)
         <x-link-button class="text-base mt-3 ml-4" :href="route('theme.create')">
-            Create a new theme
+            Create a new topic
         </x-link-button>
         @endcan
     </div>

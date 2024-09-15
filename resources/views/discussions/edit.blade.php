@@ -20,8 +20,8 @@
         <form action="{{ route('discussions.destroy', $discussion) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="border border-red-700 px-4 py-2 rounded-md hover:bg-red-700 hover:text-white w-full mt-8">
-                Delete this discussion
+            <button class="border border-red-700 px-4 py-2 rounded-md hover:bg-red-700 hover:text-my-white w-full mt-8">
+                Delete this conversation
             </button>
         </form>
     </x-card>

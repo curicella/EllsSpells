@@ -1,5 +1,5 @@
 <x-card class="mb-4">
-    <div class="flex items-center space-x-6 text-white">
+    <div class="flex items-center space-x-6 text-my-black">
         
 
         <div class="flex flex-col justify-center ml-6 ">
@@ -11,7 +11,7 @@
                         
 
                         @if (auth()->user() !== null && auth()->user()->can('block', $comment->discussion->theme) && !$comment->discussion->theme->isBlockedBy($comment->user) && auth()->user()->id != $comment->user->id)
-                        <form action="{{ route('themes.user.blockUser', ['topic' => $comment->discussion->theme, 'user' => $comment->user]) }}" method="POST">
+                        <form action="{{ route('themes.user.blockUser', ['theme' => $comment->discussion->theme, 'user' => $comment->user]) }}" method="POST">
                             @csrf
                             <button class="p-2 rounded-full hover:bg-slate-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -28,12 +28,12 @@
             <p class="mb-4">{{ $comment->content }}</p>
         </div>
 
-        <div class="flex flex-col items-center space-y-1 text-my-beige">
+        <div class="flex flex-col items-center space-y-1 text-my-black">
             <form action="{{ route("comments.vote", $comment) }}" method="POST">
                 @csrf
                 <input type="hidden" name="vote" value="1">
                 <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" @class([ 'w-8 h-8 cursor-pointer rounded-full hover:text-white hover:border-green-900' , 'bg-green-400 text-white'=> ($comment->hasVoted(auth()->user()) && $comment->userVote(auth()->user()) == 1),
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" @class([ 'w-8 h-8 cursor-pointer rounded-full hover:text-my-black hover:border-green-900' , 'bg-green-400 text-my-black'=> ($comment->hasVoted(auth()->user()) && $comment->userVote(auth()->user()) == 1),
                         ])
                         >
                         <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -41,7 +41,7 @@
                 </button>
             </form>
 
-            <p class="font-medium text-my-beige text-lg">
+            <p class="font-medium text-my-black text-lg">
                 {{ $comment->voteSum() }}
             </p>
 
@@ -49,7 +49,7 @@
                 @csrf
                 <input type="hidden" name="vote" value="-1">
                 <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" @class([ 'w-8 h-8 cursor-pointer rounded-full hover:text-white hover:bg-border-red-700' , 'bg-red-700 text-white'=> $comment->userVote(auth()->user()) == -1,
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" @class([ 'w-8 h-8 cursor-pointer rounded-full hover:text-my-black hover:bg-border-red-700' , 'bg-red-700 text-my-black'=> $comment->userVote(auth()->user()) == -1,
                         ])
                         >
                         <path stroke-linecap="round" stroke-linejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

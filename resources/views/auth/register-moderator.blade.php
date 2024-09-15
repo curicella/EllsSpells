@@ -3,7 +3,6 @@
         @csrf
 
         <!-- Name -->
-        <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -30,15 +29,11 @@
             <x-text-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
-        {{-- <div class="mb-8">
-            <x-label for="avatar">Profile picture</x-label>
-            <input type="file" name="avatar" accept=".jpg,.png">
-        </div> --}}
 
         <!-- Gender -->
         <div class="mt-4">
             <x-input-label for="gender" :value="__('Gender')" />
-            <select id="gender" name="gender" class="block mt-1 w-full required bg-my-beige text-my-brown-2">
+            <select id="gender" name="gender" class="block mt-1 w-full required bg-my-black text-my-lilac">
                 <option value="M">Male</option>
                 <option value="F">Female</option>
                 <option value="O">Other</option>
@@ -89,7 +84,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-my-beige hover:text-my-beige-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-my-black hover:text-my-black-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

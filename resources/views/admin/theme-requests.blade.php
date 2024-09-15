@@ -25,7 +25,7 @@
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <form method="POST" action="{{ route('admin.reject-theme') }}">
                         @csrf
-                        <input type="hidden" name="topic_id" value="{{ $theme->id }}">
+                        <input type="hidden" name="theme_id" value="{{ $theme->id }}">
                         <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
                     </form>
                 </td>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-card class="w-1/2 mx-auto">
-        <h1 class="text-2xl font-semibold mb-4">Edit theme</h1>
+        <h1 class="text-2xl font-semibold mb-4">Edit topic</h1>
         <form action="{{ route('theme.update', $theme) }}" method="POST">
             @csrf
             @method('PATCH')
@@ -20,8 +20,8 @@
         <form action="{{ route('theme.destroy', $theme) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="border border-red-700 px-4 py-2 rounded-md hover:bg-red-700 hover:text-white w-full mt-8">
-                Delete this theme
+            <button class="border border-red-700 px-4 py-2 rounded-md hover:bg-red-700 hover:text-my-black w-full mt-8">
+                Delete this topic
             </button>
         </form>
     </x-card>

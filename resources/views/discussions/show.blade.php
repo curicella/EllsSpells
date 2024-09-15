@@ -3,7 +3,7 @@
         <x-discussion-card :$discussion>
             @can('update', $discussion)
             <x-link-button :href="route('discussions.edit', $discussion)">
-                Edit this discussion
+                Edit this conversation
             </x-link-button>
             @endcan
         </x-discussion-card>
@@ -26,8 +26,8 @@
     
     @else
     <x-card class="mb-4">
-        <p class="font-bold text-slate-400">
-            Log in to discuss!
+        <p class="font-bold text-my-black">
+            Log in to converse!
         </p>
     </x-card>
     @endcan
@@ -47,8 +47,8 @@
                 <x-button class="font-medium text-sm w-fit self-end py-0.5 mt-2">Reply</x-button>
             </form>
             @else
-            <p class="font-bold text-slate-400 my-8">
-                Log in so you can join in on this disscussion
+            <p class="font-bold text-my-black my-8">
+                Log in to join in on this conversation
             </p>
             @endcan
             @foreach ($comment->replies->sortByDesc('updated_at') as $reply)
