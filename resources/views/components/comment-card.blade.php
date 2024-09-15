@@ -21,7 +21,7 @@
                         </form>
                         @endif
                     </div>
-                    <p class="text-gray-600 text-sm">{{ $comment->created_at->diffForHumans() }}</p>
+                    <p class="text-my-black-2 text-sm">{{ $comment->created_at->diffForHumans() }}</p>
                 </div>
             </div>
 

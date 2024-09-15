@@ -58,6 +58,7 @@ class RegisteredUserController extends Controller
             'gender'
         ) + [
             'password' => bcrypt($request->password),
+            'role' => 'User',
             'avatar' => $response
         ]);
 

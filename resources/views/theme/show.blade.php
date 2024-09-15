@@ -67,9 +67,9 @@
     @auth
         <div x-data="{ openTab: 1 }">
             <div class="flex space-x-4 text-sm font-medium text-center text-my-black-2 ml-8 mt-8">
-                <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Conversations</button>
+                <button @click="openTab = 1" :class="openTab === 1 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-my-black hover:bg-gray-100'">Conversations</button>
 
-                <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100'">Posts</button>
+                <button @click="openTab = 3" :class="openTab === 3 ? 'px-4 py-3 rounded-lg text-my-black bg-my-lilac active' : 'px-4 py-3 rounded-lg hover:text-my-black hover:bg-gray-100'">Posts</button>
             </div>
 
             <x-card class="mb-4" x-show="openTab === 1">

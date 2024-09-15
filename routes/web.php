@@ -32,16 +32,16 @@ Route::get('/', function () {
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
- 
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
+
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
- 
+
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
- 
+
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
@@ -64,7 +64,7 @@ Route::get('admin/theme-requests', [AdminController::class, 'themeRequests'])->n
 Route::post('admin/approve-theme', [AdminController::class, 'approveTheme'])->name('admin.approve-theme');
 Route::post('admin/reject-theme', [AdminController::class, 'rejectTheme'])->name('admin.reject-theme');
 
-Route::get('theme', fn () => to_route('theme.index'));
+Route::get('theme', fn() => to_route('theme.index'));
 
 Route::resource('theme', ThemeController::class)
     ->only(['index', 'show', 'follows', 'edit', 'update', 'create', 'store', 'destroy']);
@@ -82,11 +82,11 @@ Route::resource('discussions', DiscussionController::class)
     ->only(['edit', 'update', 'destroy']);
 
 
-    
+
 Route::resource('discussion.comments', CommentController::class)
-->only(['store']);
+    ->only(['store']);
 Route::resource('comment.replies', ReplyController::class)
-->only(['store', 'edit', 'update']);
+    ->only(['store', 'edit', 'update']);
 Route::post('comments/{comment}/vote', [CommentController::class, 'vote'])->name('comments.vote');
 
 Route::post('themes/{theme}/user/{user}/block', [ThemeController::class, 'blockUser'])->name('themes.user.blockUser');
@@ -96,4 +96,4 @@ Route::delete('themes/{theme}/user/{user}/unblock', [ThemeController::class, 'un
 Route::resource('posts', PostController::class)
     ->only(['show']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

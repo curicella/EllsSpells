@@ -6,7 +6,7 @@
                 <h3 class="font-semibold text-lg">{{ $reply->user->name }}</h3>
                 
             </div>
-            <p class="text-gray-600 text-sm">{{ $reply->created_at->diffForHumans() }}</p>
+            <p class="text-my-black-2 text-sm">{{ $reply->created_at->diffForHumans() }}</p>
         </div>
     </div>
 

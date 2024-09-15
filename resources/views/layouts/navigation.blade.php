@@ -116,7 +116,7 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-my-black-2">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
@@ -139,10 +139,10 @@
         </div>
         @else
             <div class="pt-4 pb-1 border-t border-gray-200">
-                <x-responsive-nav-link href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('login') }}" class="font-semibold text-my-black-2 hover:text-my-black dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</x-responsive-nav-link>
 
                 @if (Route::has('register'))
-                    <x-responsive-nav-link href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('register') }}" class="ml-4 font-semibold text-my-black-2 hover:text-my-black dark:text-gray-400 dark:hover:text-my-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</x-responsive-nav-link>
                 @endif
             </div>
         @endauth

@@ -11,7 +11,7 @@
                         <img src="{{ $theme->user->avatar }}" alt="{{ $theme->user->name }}" class="w-10 h-10 mt-2 rounded-full">
                         <div class="">
                             <h3 class="font-semibold pt-2 uppercase">{{ $theme->user->name }}</h3>
-                            <p class="text-gray-600 text-sm">
+                            <p class="text-my-black-2 text-sm">
                                 @if($theme->created_at)
                                     {{ $theme->created_at->diffForHumans() }}
                                 @else
@@ -24,7 +24,7 @@
     
                 <div>
                     <h2 class="mb-4 text-xl text-my-black font-semibold">{{ $theme->name }}</h2>
-                    <p class="mb-4 text-gray-600">{{ $theme->description }}</p>
+                    <p class="mb-4 text-my-black-2">{{ $theme->description }}</p>
                 </div>
             </div>
             <div class="mt-auto">

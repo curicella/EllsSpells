@@ -41,20 +41,20 @@ class DatabaseSeeder extends Seeder
             'role' => 'MODERATOR'
         ]);
         \App\Models\Theme::factory()->create([
-            'name' => 'Tema1',
-            'description' => 'Tema 1 description',
+            'name' => 'Topic1',
+            'description' => 'Topic 1 description',
             'approve_status' => 'APPROVED',
             'user_id' => 3
         ]);
         \App\Models\Theme::factory()->create([
             'name' => 'Tema2',
-            'description' => 'Tema 2 description',
+            'description' => 'Topic 2 description',
             'approve_status' => 'PENDING',
             'user_id' => 3
         ]);
         \App\Models\Theme::factory()->create([
-            'name' => 'Tema3',
-            'description' => 'Tema 3 description',
+            'name' => 'Topic3',
+            'description' => 'Topic 3 description',
             'approve_status' => 'APPROVED',
             'user_id' => 3
         ]);
