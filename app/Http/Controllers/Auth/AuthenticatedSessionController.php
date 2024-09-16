@@ -64,14 +64,6 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->back()
                     ->with('error', 'Invalid credentials');
             }
-
-
-        // $request->authenticate();
-
-        // $request->session()->regenerate();
-
-        // //return redirect()->intended(RouteServiceProvider::HOME);
-        // return redirect('theme');
     }
 
     /**

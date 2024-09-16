@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\CommentController;
@@ -19,7 +20,7 @@ use Illuminate\Http\Request;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can b web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
@@ -92,6 +93,9 @@ Route::post('comments/{comment}/vote', [CommentController::class, 'vote'])->name
 Route::post('themes/{theme}/user/{user}/block', [ThemeController::class, 'blockUser'])->name('themes.user.blockUser');
 Route::delete('themes/{theme}/user/{user}/unblock', [ThemeController::class, 'unblockUser'])->name('themes.user.unblockUser');
 
+Route::get('register-moderator', [RegisteredUserController::class, 'register_moderator_form'])->name('register_moderator');
+    
+Route::post('register-moderator', [RegisteredUserController::class, 'register_moderator_post']);
 
 Route::resource('posts', PostController::class)
     ->only(['show']);

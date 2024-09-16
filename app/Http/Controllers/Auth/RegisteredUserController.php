@@ -79,7 +79,7 @@ class RegisteredUserController extends Controller
         return view('auth.register-moderator');
     }
 
-    public function register_moderator(Request $request)
+    public function register_moderator_post(Request $request)
     {
         $request->validate([
             'name' => 'required',

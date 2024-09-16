@@ -9,7 +9,7 @@
         @endcan
     </div>
 
-    @foreach ($themes->sortByDesc('updated_at') as $theme)
+    @foreach ($themes->sortByAsc('updated_at') as $theme)
     <x-theme-card class="mb-4" :$theme>
         <x-link-button :href="route('theme.show', $theme)">
             Show conversations from this topic

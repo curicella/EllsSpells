@@ -38,66 +38,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'moderator2',
             'username' => 'moderator2',
             'email' => 'moderator2@gmail.com',
-            'role' => 'MODERATOR'
+            'role' => 'MODERATOR',
         ]);
-        \App\Models\Theme::factory()->create([
-            'name' => 'Topic1',
-            'description' => 'Topic 1 description',
-            'approve_status' => 'APPROVED',
-            'user_id' => 3
-        ]);
-        \App\Models\Theme::factory()->create([
-            'name' => 'Tema2',
-            'description' => 'Topic 2 description',
-            'approve_status' => 'PENDING',
-            'user_id' => 3
-        ]);
-        \App\Models\Theme::factory()->create([
-            'name' => 'Topic3',
-            'description' => 'Topic 3 description',
-            'approve_status' => 'APPROVED',
-            'user_id' => 3
-        ]);
-        
-        $themes = \App\Models\Theme::all();
-
-        $usersAndModerators = \App\Models\User::where('role', 'MODERATOR')
-            ->orWhere('role', 'user')
-            ->get();
-
-        foreach ($themes as $theme) {
-            for ($i = 0; $i < random_int(2, 5); $i++) {
-                \App\Models\Discussion::factory()->create([
-                    'user_id' => $usersAndModerators->random()->id,
-                    'theme_id' => $theme->id
-                ]); 
-            }
-        }
-
-        $discussions = \App\Models\Discussion::all();
-
-        foreach ($discussions as $discussion) {
-            for ($i = 0; $i < random_int(5, 10); $i++) {
-                \App\Models\Comment::factory()->create([
-                    'user_id' => $usersAndModerators->random()->id,
-                    'discussion_id' => $discussion->id,
-                ]);
-            }
-        }
-
-        $comments = \App\Models\Comment::all();
-
-        foreach ($comments as $comment) {
-            for ($i = 0; $i < random_int(0, 6); $i++) {
-                \App\Models\Reply::factory()->create([
-                    'user_id' => $usersAndModerators->random()->id,
-                    'comment_id' => $comment->id,
-                ]);
-            }
-        }
-
-
-
-
     }
 }
